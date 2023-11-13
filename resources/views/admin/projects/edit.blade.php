@@ -45,7 +45,7 @@
                         <option>untyped</option>
                         @foreach ($types as $type)
                             <option value="{{ $type->id }}"
-                                {{ $project->type_id == old('type_id', $project->type_id) ? 'selected' : '' }}>
+                                {{ $type->id == old('type_id', $project->type_id) ? 'selected' : '' }}>
                                 {{ $type->name }}</option>
                         @endforeach
                     </select>
