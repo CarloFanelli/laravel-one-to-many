@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Support\Str;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -31,8 +32,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -40,6 +41,8 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        // dd($request);
+
         $val_data = $request->validated();
 
         $val_data['slug'] = Str::slug($request->title, '-');
@@ -50,6 +53,7 @@ class ProjectController extends Controller
             $path = strstr($complete_path, '/');
             $val_data['cover_image'] = $path;
         }
+
 
         //dd($val_data);
         //dd(Project::create($val_data));

@@ -8,6 +8,8 @@
                     <div class="col-6">
                         <h2>{{ $project->title }}</h2>
                         <p>{{ $project->content }}</p>
+                        <span
+                            class="badge rounded-pill text-bg-success">{{ $project->type_id == null ? 'untyped' : $project->type?->name }}</span>
 
                     </div>
                     <div class="col-6">

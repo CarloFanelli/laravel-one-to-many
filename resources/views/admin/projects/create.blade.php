@@ -31,9 +31,26 @@
                 </div>
                 @error('title')
                     <span class="text-danger">
-                        {{ message }}
+                        {{ $message }}
                     </span>
                 @enderror
+
+                <div class="mb-3">
+                    <label for="type_id" class="form-label">Type Category</label>
+                    <select class="form-select form-select" name="type_id" id="type_id">
+                        <option selected disabled>Select one</option>
+                        <option>untyped</option>
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                                {{ $type->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('type_id')
+                        <span class="text-danger">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
 
                 <div class="mb-3">
                     <label for="git_link" class="form-label">Git Link</label>
@@ -44,7 +61,7 @@
                 </div>
                 @error('git_link')
                     <span class="text-danger">
-                        {{ message }}
+                        {{ $message }}
                     </span>
                 @enderror
 
@@ -57,7 +74,7 @@
                 </div>
                 @error('external_link')
                     <span class="text-danger">
-                        {{ message }}
+                        {{ $message }}
                     </span>
                 @enderror
 
@@ -69,7 +86,7 @@
                 </div>
                 @error('cover_image')
                     <span class="text-danger">
-                        {{ message }}
+                        {{ $message }}
                     </span>
                 @enderror
 
@@ -79,7 +96,7 @@
                 </div>
                 @error('content')
                     <span class="text-danger">
-                        {{ message }}
+                        {{ $message }}
                     </span>
                 @enderror
 
