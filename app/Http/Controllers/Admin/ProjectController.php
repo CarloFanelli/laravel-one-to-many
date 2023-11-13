@@ -76,8 +76,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -107,6 +107,10 @@ class ProjectController extends Controller
 
         if ($request->has('git_link')) {
             $val_data['git_link'] = $request->git_link;
+        }
+
+        if ($request->has('type_id')) {
+            $val_data['type_id'] = $request->type_id;
         }
 
         $project->update($val_data);

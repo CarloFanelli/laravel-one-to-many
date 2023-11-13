@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <h2 class="fs-4 text-secondary my-4">
             {{ __('Dashboard') }}
         </h2>
         <div class="row justify-content-center">
-            <div class="col">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <div class="user_welcome">
@@ -38,6 +38,7 @@
                                     <tr>
                                         <th class="text-center">ID</th>
                                         <th class="text-center">TITLE</th>
+                                        <th class="text-center">TYPE</th>
                                         <th class="text-center">SLUG</th>
                                         <th class="text-center">IMG</th>
                                         <th class="text-center">GitLink</th>
@@ -50,6 +51,8 @@
                                         <tr class="table-primary">
                                             <td class="text-center m-auto" scope="row">{{ $project->id }}</td>
                                             <td class="text-center m-auto">{{ $project->title }}</td>
+                                            <td class="text-center m-auto">
+                                                {{ $project->type_id == null ? 'untyped' : $project->type?->name }}</td>
                                             <td class="text-center m-auto">{{ $project->slug }}</td>
                                             <td class="text-center m-auto">
                                                 @if ($project->cover_image)

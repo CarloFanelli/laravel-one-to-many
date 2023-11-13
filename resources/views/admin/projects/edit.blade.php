@@ -30,12 +30,31 @@
                         @error('title') is-invalid @enderror placeholder="title" aria-describedby="helperTitle"
                         value="{{ old('title', $project->title) }}">
                     <small id="helperTitle" class="text-muted">type your project title max:50 characters</small>
+                    @error('title')
+                        <span class="text-danger">
+                            {{ message }}
+                        </span>
+                    @enderror
                 </div>
-                @error('title')
-                    <span class="text-danger">
-                        {{ message }}
-                    </span>
-                @enderror
+
+
+                <div class="mb-3">
+                    <label for="type_id" class="form-label">Type</label>
+                    <select class="form-select form-select" name="type_id" id="type_id">
+                        <option selected disabled>Select one</option>
+                        <option>untyped</option>
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}"
+                                {{ $project->type_id == old('type_id', $project->type_id) ? 'selected' : '' }}>
+                                {{ $type->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('type_id')
+                        <span class="text-danger">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
 
                 <div class="mb-3">
                     <label for="git_link" class="form-label">git link</label>
