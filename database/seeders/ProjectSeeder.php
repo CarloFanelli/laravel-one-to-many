@@ -19,6 +19,7 @@ class ProjectSeeder extends Seeder
 
             $project = new Project();
 
+            $project->type_id = rand(1, 4);
             $project->title = $faker->realText(15);
             $project->content = $faker->realText();
             $project->slug = Str::slug($project->title, '-');

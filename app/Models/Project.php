@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -15,10 +16,16 @@ class Project extends Model
 
     protected $datas = ['deleted_at'];
 
-    protected $fillable = ['title', 'content', 'slug', 'cover_image', 'project_link', 'git_link'];
+    protected $fillable = ['type_id', 'title', 'content', 'slug', 'cover_image', 'project_link', 'git_link'];
 
     public function generateSlug($title)
     {
         return Str::slug($title, '-');
+    }
+
+    public function type(): BelongsTo
+    {
+
+        return $this->belongsTo(Type::class);
     }
 }
